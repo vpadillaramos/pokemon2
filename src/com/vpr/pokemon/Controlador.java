@@ -3,7 +3,12 @@ package com.vpr.pokemon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import com.vpr.pokemon.ui.Login;;
+
+import javax.swing.JOptionPane;
+
+import com.vpr.pokemon.Pokemon.Tipo;
+import com.vpr.pokemon.ui.Login;
+import com.vpr.pokemon.util.Util;;
 
 public class Controlador implements ActionListener{
 	
@@ -116,6 +121,45 @@ public class Controlador implements ActionListener{
 			break;
 			
 		case "guardar":
+			
+			//Nombre obligatorio
+			if(vista.tfNombre.getText().equals("")) {
+				Util.mensajeError("Error", "El nombre es obligatorio");
+				return;
+			}
+			
+			if(vista.tfNivel.getText().equals(""))
+				vista.tfNivel.setText("0");
+			if(!modelo.isNumeric(vista.tfNivel.getText())) {
+				Util.mensajeError("Error", "El nivel debe ser un número");
+				vista.tfNivel.selectAll();
+				vista.tfNivel.requestFocus();
+				return;
+			}
+			
+			if(vista.tfPeso.getText().equals(""))
+				vista.tfPeso.setText("0.0");
+			if(!modelo.isNumeric(vista.tfPeso.getText())) {
+				Util.mensajeError("Error", "El eso debe ser un número");
+				vista.tfPeso.selectAll();
+				vista.tfPeso.requestFocus();
+				return;
+			}
+			
+			//recogida de datos
+			String nombre = vista.tfNombre.getText();
+			Tipo tipo = (Tipo)vista.cbTipo.getSelectedItem();
+			int nivel = Integer.parseInt(vista.tfNivel.getText());
+			float peso = Float.parseFloat(vista.tfPeso.getText());
+			
+			Pokemon pokemon = new Pokemon(nombre, tipo, nivel, peso);
+			try {
+				modelo.guardarPokemon(pokemon);
+				Util.mensajeInformacion("Hecho", "Pokemon guardado correctamente");
+			} catch (SQLException sqle) {
+				Util.mensajeError("Error", "No se pudo guarda el Pokemon");
+				sqle.printStackTrace();
+			}
 			
 			break;
 			

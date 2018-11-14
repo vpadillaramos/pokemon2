@@ -13,6 +13,19 @@ public class Pokemon {
 	private float peso;
 	//private imagen;
 	
+	//Constructores
+	public Pokemon() {
+		
+	}
+	
+	public Pokemon(String nombre, Tipo tipo, int nivel, float peso) {
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.nivel = nivel;
+		this.peso = peso;
+	}
+	
+	//Metodos
 	
 	public String getNombre() {
 		return nombre;
