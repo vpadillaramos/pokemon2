@@ -7,6 +7,7 @@ public class Pokemon {
 		Psíquico, Acero, Dragón, Tierra, Eléctrico, Veneno,
 		Bicho, Volador, Hielo, Lucha, Roca
 	}
+	private int id;
 	private String nombre;
 	private Tipo tipo;
 	private int nivel;
@@ -25,7 +26,18 @@ public class Pokemon {
 		this.peso = peso;
 	}
 	
+	public Pokemon(int id, String nombre, Tipo tipo, int nivel, float peso) {
+		this.id = id;
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.nivel = nivel;
+		this.peso = peso;
+	}
+	
 	//Metodos
+	public int getId() {
+		return id;
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -41,6 +53,10 @@ public class Pokemon {
 	
 	public float getPeso() {
 		return peso;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setNombre(String nombre) {
@@ -59,5 +75,8 @@ public class Pokemon {
 		this.peso = peso;
 	}
 	
+	public String toString() {
+		return nombre;
+	}
 	
 }

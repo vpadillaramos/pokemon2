@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 public class Vista extends JFrame {
@@ -23,13 +24,14 @@ public class Vista extends JFrame {
 	public JTextField tfPeso;
 	public JLabel lbImagen;
 	public JScrollPane scrollPane;
-	public JList listPokemon;
+	public JList<Pokemon> listPokemon;
 	public JComboBox cbTipo;
 	public JButton btNuevo;
 	public JButton btEditar;
 	public JButton btGuardar;
 	public JButton btCancelar;
 	public JButton btBorrar;
+	public DefaultListModel<Pokemon> modelPokemon;
 
 	public Vista() {
 		getContentPane().setLayout(null);
@@ -82,7 +84,9 @@ public class Vista extends JFrame {
 		scrollPane.setBounds(270, 18, 139, 156);
 		getContentPane().add(scrollPane);
 		
+		modelPokemon = new DefaultListModel();
 		listPokemon = new JList();
+		listPokemon.setModel(modelPokemon);
 		scrollPane.setViewportView(listPokemon);
 		
 		cbTipo = new JComboBox();
